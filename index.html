@@ -1,285 +1,122 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Nursecompanion</title>
-  <style>
-    /* Reset & base */
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: #e6f0ff url('gamede1.jpg') no-repeat center center fixed;
-      background-size: cover;
-      color: #003366;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-    }
-    /* Overlay for watermark effect */
-    body::before {
-      content: "";
-      position: fixed;
-      top: 0; left: 0;
-      width: 100vw;
-      height: 100vh;
-      background: url('gamede1.jpg') no-repeat center center;
-      background-size: contain;
-      opacity: 0.08;
-      pointer-events: none;
-      z-index: -1;
-      filter: grayscale(80%) blur(2px);
-    }
-    header {
-      background: linear-gradient(90deg, #0052cc, #0073e6);
-      padding: 2rem 1rem;
-      text-align: center;
-      color: #f0f8ff;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    }
-    header h1 {
-      font-weight: 900;
-      font-size: 2.5rem;
-      letter-spacing: 2px;
-      text-shadow: 1px 1px 5px rgba(0,0,0,0.3);
-      animation: fadeInDown 1.2s ease forwards;
-    }
-    nav {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background-color: #cce0ff;
-      padding: 1rem 2rem;
-      border-radius: 12px;
-      margin: 1rem auto;
-      width: 90%;
-      max-width: 1200px;
-      box-shadow: 0 6px 15px rgba(0,0,0,0.1);
-      font-weight: 600;
-    }
-    nav a {
-      color: #004080;
-      text-decoration: none;
-      margin: 0 1rem;
-      font-size: 1.1rem;
-      position: relative;
-      transition: color 0.3s ease;
-    }
-    nav a::after {
-      content: '';
-      position: absolute;
-      width: 0;
-      height: 2px;
-      bottom: -5px;
-      left: 0;
-      background-color: #0052cc;
-      transition: width 0.3s;
-    }
-    nav a:hover {
-      color: #0073e6;
-    }
-    nav a:hover::after {
-      width: 100%;
-    }
-    .search-container {
-      display: flex;
-      align-items: center;
-    }
-    .search-container input {
-      padding: 8px 12px;
-      font-size: 1rem;
-      border-radius: 25px 0 0 25px;
-      border: 1.5px solid #0052cc;
-      outline: none;
-      width: 250px;
-      transition: width 0.3s ease;
-    }
-    .search-container input:focus {
-      width: 320px;
-      box-shadow: 0 0 8px #0073e6;
-    }
-    .search-container button {
-      background-color: #0052cc;
-      border: none;
-      padding: 9px 20px;
-      color: #f0f8ff;
-      font-weight: 700;
-      font-size: 1rem;
-      border-radius: 0 25px 25px 0;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.2);
-    }
-    .search-container button:hover {
-      background-color: #003d99;
-    }
-    main {
-      flex-grow: 1;
-      max-width: 900px;
-      margin: 2rem auto 4rem auto;
-      background: #ffffffdd;
-      border-radius: 16px;
-      padding: 3rem 3rem 4rem 3rem;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.12);
-      animation: fadeInUp 1.2s ease forwards;
-    }
-    section {
-      margin-bottom: 3rem;
-    }
-    section h2 {
-      font-size: 2rem;
-      margin-bottom: 1rem;
-      color: #003366;
-      border-bottom: 3px solid #0073e6;
-      padding-bottom: 6px;
-      letter-spacing: 1.2px;
-    }
-    section p,
-    section ul {
-      font-size: 1.1rem;
-      line-height: 1.6;
-      color: #204060;
-    }
-    section ul li {
-      margin-bottom: 0.6rem;
-    }
-    section ul li:last-child {
-      margin-bottom: 0;
-    }
-    #contact a {
-      color: #0052cc;
-      font-weight: 700;
-      text-decoration: none;
-      border-bottom: 2px solid transparent;
-      transition: border-color 0.3s ease;
-    }
-    #contact a:hover {
-      border-color: #0052cc;
-    }
-    footer {
-      background: linear-gradient(90deg, #0052cc, #0073e6);
-      color: #f0f8ff;
-      text-align: center;
-      padding: 1rem 0;
-      font-weight: 600;
-      font-size: 1rem;
-      box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.15);
-      position: fixed;
-      bottom: 0;
-      width: 100%;
-      z-index: 100;
-    }
-    @keyframes fadeInDown {
-      from {
-        opacity: 0;
-        transform: translateY(-20px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-    @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(20px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-    @media (max-width: 600px) {
-      nav {
-        flex-direction: column;
-        gap: 1rem;
-        padding: 1rem;
-      }
-      nav .search-container input {
-        width: 180px;
-      }
-      main {
-        margin: 1rem;
-        padding: 2rem 1.5rem 3rem 1.5rem;
-      }
-      section h2 {
-        font-size: 1.6rem;
-      }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nursecompanion</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f8ff;
+            color: #333;
+        }
+
+        header {
+            background-color: #004d99;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            background-color: #0066cc;
+            padding: 10px;
+        }
+
+        nav a {
+            margin: 0 15px;
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        main {
+            padding: 20px;
+        }
+
+        section {
+            margin-bottom: 20px;
+            background-color: #ffffff;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        footer {
+            background-color: #004d99;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        .pdf-container {
+            margin: 20px 0;
+            border: 1px solid #ccc;
+            padding: 10px;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+        }
+
+        .pdf-container iframe {
+            width: 100%;
+            height: 500px;
+            border: none;
+        }
+    </style>
 </head>
 <body>
-  <header>
-    <h1>Welcome to Nursecompanion</h1>
-  </header>
-  <nav>
-    <div>
-      <a href="#about">About</a>
-      <a href="#services">Services</a>
-      <a href="#contact">Contact</a>
-    </div>
-    <div class="search-container">
-      <input
-        type="text"
-        id="search-input"
-        placeholder="Search"
-        aria-label="Search"
-      />
-      <button onclick="performSearch()">Search</button>
-    </div>
-  </nav>
-  <main>
-    <section id="about">
-      <h2>About Nursecompanion</h2>
-      <p>
-        Nursecompanion is your trusted resource for nursing procedures,
-        healthcare tips, and professional growth in the nursing field. Our
-        mission is to empower nurses and healthcare providers through
-        accessible knowledge and tools.
-      </p>
-    </section>
-    <section id="services">
-      <h2>Services</h2>
-      <ul>
-        <li>Comprehensive nursing guides</li>
-        <li>Step-by-step procedures for common nursing tasks</li>
-        <li>Educational resources and tools</li>
-      </ul>
-    </section>
-    <section id="contact">
-      <h2>Contact</h2>
-      <p>
-        For inquiries or contributions, reach out via email:
-        <a href="mailto:gamedekamajola@gmail.com">gamedekamajola@gmail.com</a>
-      </p>
-    </section>
-  </main>
-  <footer>
-    <p>&copy; 2024 Nursecompanion</p>
-  </footer>
-  <script>
-    function performSearch() {
-      const query = document.getElementById("search-input").value.toLowerCase();
-      const sections = document.querySelectorAll("main section");
-      let found = false;
-
-      sections.forEach((section) => {
-        if (section.innerText.toLowerCase().includes(query)) {
-          section.style.display = "block";
-          found = true;
-        } else {
-          section.style.display = "none";
-        }
-      });
-
-      if (!found) {
-        alert("No results found. Try different keywords.");
-      }
-    }
-  </script>
+    <header>
+        <h1>Welcome to Nursecompanion</h1>
+    </header>
+    <nav>
+        <a href="#about">About</a>
+        <a href="#services">Services</a>
+        <a href="#contact">Contact</a>
+    </nav>
+    <main>
+        <section id="about">
+            <h2>About Nursecompanion</h2>
+            <p>Nursecompanion is your trusted resource for nursing procedures, healthcare tips, and professional growth in the nursing field. Our mission is to empower nurses and healthcare providers through accessible knowledge and tools.</p>
+        </section>
+        <section id="services">
+            <h2>Services</h2>
+            <ul>
+                <li>Comprehensive nursing guides</li>
+                <li>Step-by-step procedures for common nursing tasks</li>
+                <li>Educational resources and tools</li>
+            </ul>
+        </section>
+        <section id="pdf">
+            <h2>Essential Nursing Guide</h2>
+            <div class="pdf-container">
+                <iframe src="/mnt/data/7%20CRUCIAL%20STEPS%20WHEN%20GETTING%20A%20WARD.pdf" oncontextmenu="return false;"></iframe>
+            </div>
+        </section>
+        <section id="contact">
+            <h2>Contact</h2>
+            <p>For inquiries or contributions, reach out via email: <a href="mailto:gamedekamajola@gmail.com">gamedekamajola@gmail.com</a></p>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2024 Nursecompanion</p>
+    </footer>
+    <script>
+        document.addEventListener('contextmenu', function(e) {
+            if (e.target.tagName === 'IFRAME') {
+                e.preventDefault();
+            }
+        });
+    </script>
 </body>
 </html>
