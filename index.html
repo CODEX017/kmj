@@ -1,18 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gamede Website</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Nursecompanion</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f0f0f0;
+            background-color: #f9f9f9;
+            background-image: url('gamede1.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            /* To make the background image look like a watermark */
+            position: relative;
+        }
+        /* Overlay to create watermark effect */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: url('gamede1.jpg') no-repeat center center;
+            background-size: contain;
+            opacity: 0.1;
+            pointer-events: none;
+            z-index: -1;
         }
         header {
-            background-color: #333333;
+            background-color: #004d99;
             color: white;
             padding: 10px 20px;
             text-align: center;
@@ -22,20 +40,51 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            background-color: #e6f2ff;
+            padding: 10px;
+            border-radius: 8px;
         }
         nav a {
             margin: 0 10px;
             text-decoration: none;
-            color: #333;
+            color: #004d99;
+            font-weight: bold;
+        }
+        nav .search-container {
+            display: flex;
+            align-items: center;
+        }
+        nav .search-container input {
+            padding: 5px;
+            font-size: 16px;
+            margin-right: 5px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        nav .search-container button {
+            padding: 5px 10px;
+            font-size: 16px;
+            background-color: #004d99;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        nav .search-container button:hover {
+            background-color: #003366;
         }
         main {
             padding: 20px;
         }
         section {
             margin-bottom: 20px;
+            background-color: #ffffff;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
         footer {
-            background-color: #333;
+            background-color: #004d99;
             color: white;
             text-align: center;
             padding: 10px;
@@ -43,101 +92,151 @@
             width: 100%;
             bottom: 0;
         }
-        .search-container {
-            display: flex;
-            align-items: center;
+        .procedure-form {
+            margin-top: 15px;
         }
-        .search-container input[type="text"] {
-            padding: 5px;
-            font-size: 16px;
+        .procedure-form label {
+            display: block;
+            margin: 5px 0;
         }
-        .search-container button {
-            padding: 5px 10px;
-            font-size: 16px;
-            background-color: #333;
+        .procedure-form input,
+        .procedure-form textarea,
+        .procedure-form button {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .procedure-form button {
+            background-color: #004d99;
             color: white;
-            border: none;
             cursor: pointer;
         }
-        .search-container button:hover {
-            background-color: #555;
+        .procedure-form button:hover {
+            background-color: #003366;
+        }
+        .pdf-container {
+            margin-top: 15px;
+            border: 1px solid #ccc;
+            padding: 10px;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+        }
+        .pdf-container iframe {
+            width: 100%;
+            height: 400px;
+            border: none;
         }
     </style>
 </head>
 <body>
     <header>
-        <h1>Welcome to Gamede Website</h1>
+        <h1>Welcome to Nursecompanion</h1>
     </header>
     <nav>
         <div>
             <a href="#about">About</a>
             <a href="#services">Services</a>
+            <a href="#procedures">Procedures</a>
             <a href="#contact">Contact</a>
-            <a href="#learn-more">Learn More</a>
         </div>
         <div class="search-container">
-            <input type="text" placeholder="Search..." name="search">
-            <button type="submit">Search</button>
+            <input
+                type="text"
+                id="search-input"
+                placeholder="Search for medications, infections, or problems..."
+            />
+            <button onclick="performSearch()">Search</button>
         </div>
     </nav>
     <main>
         <section id="about">
-            <h2>About Me</h2>
-            <p>Hi, my name is Gamede KaMajola, and I'm a passionate gamer and developer. I created this website to share my love for gaming and technology with the world. Here's a little bit more about me:</p>
-            <ul>
-                <li><strong>Name:</strong> Gamede KaMajola</li>
-                <li><strong>Email:</strong> <a href="mailto:gamede@gmail.com">gamede@gmail.com</a></li>
-                <li><strong>Phone number:</strong> +266 59499914</li>
-                <li><strong>Address:</strong> Mafikeng</li>
-                <li><strong>Title:</strong> Top Notch</li>
-                <li><strong>Job:</strong> Gamer/Software Developer</li>
-                <li><strong>Hobbies:</strong>
-                    <ul>
-                        <li>Playing video games</li>
-                        <li>Developing game-related software</li>
-                        </ul>
-                </li>
-            </ul>
-            <p>I have always been fascinated by the world of gaming, and I spend most of my time exploring new games, improving my skills, and sharing my experiences with others. Whether it's through live streams, tutorials, or just playing with friends, I love every aspect of gaming.</p>
-            <p>Feel free to reach out if you share the same passion or want to collaborate on a project!</p>
+            <h2>About Nursecompanion</h2>
+            <p>
+                Nursecompanion is your trusted resource for nursing
+                procedures, healthcare tips, and professional growth in the
+                nursing field. Our mission is to empower nurses and healthcare
+                providers through accessible knowledge and tools.
+            </p>
         </section>
         <section id="services">
             <h2>Services</h2>
-            <p>As a dedicated gamer and developer, I offer a range of services to help you improve your gaming experience and achieve your goals. Here are some of the services I provide:</p>
             <ul>
-                <li><strong>Game Coaching:</strong> Personalized coaching sessions to help you improve your skills in various games.</li>
-                <li><strong>Game Development:</strong> Custom game development services for noobie developers and gaming enthusiasts.</li>
-                <li><strong>Tournament Preparation:</strong> Strategies and training plans to help you prepare for gaming tournaments.</li>
+                <li>Comprehensive nursing guides</li>
+                <li>Step-by-step procedures for common nursing tasks</li>
+                <li>Educational resources and tools</li>
             </ul>
-            <p>If you're interested in any of these services, feel free to contact me for more details and pricing information.</p>
+        </section>
+        <section id="procedures">
+            <h2>Procedures</h2>
+            <div class="procedure">
+                <h3>Catheterization</h3>
+                <div class="pdf-container">
+                    <iframe src="catheterization.pdf"></iframe>
+                </div>
+            </div>
+            <div class="procedure">
+                <h3>IV Line Insertion</h3>
+                <div class="pdf-container">
+                    <iframe src="iv-line-insertion.pdf"></iframe>
+                </div>
+            </div>
+        </section>
+        <section id="medical-info">
+            <h2>Medical Information</h2>
+            <div class="procedure-form">
+                <h3>Infections</h3>
+                <label for="infection">Describe the Infection:</label>
+                <textarea
+                    id="infection"
+                    placeholder="Enter details about the infection..."
+                ></textarea>
+            </div>
+            <div class="procedure-form">
+                <h3>Medications</h3>
+                <label for="medication">List the Medications:</label>
+                <textarea
+                    id="medication"
+                    placeholder="Enter details about the medications..."
+                ></textarea>
+            </div>
+            <div class="procedure-form">
+                <h3>Other Medical Problems</h3>
+                <label for="medical-problem">Describe the Problem:</label>
+                <textarea
+                    id="medical-problem"
+                    placeholder="Enter details about the medical problem..."
+                ></textarea>
+            </div>
         </section>
         <section id="contact">
             <h2>Contact</h2>
-            <p>If you have any questions, want to collaborate, or need any of my services, please reach out to me through the following methods:</p>
-            <ul>
-                <li><strong>Email:</strong> <a href="mailto:gamede@gmail.com">gamede@gmail.com</a></li>
-                <li><strong>Phone:</strong> +266 59499914</li>
-                <li><strong>Address:</strong> Mafefikeng</li>
-                <li><strong>Social Media:</strong>
-                    <ul>
-                        <li><a href="https://www.instagram.com/mabel_ebele">Instagram</a></li>
-                        <li><a  href="https://www.facebook.com/Gamede Kamajola">Facebook</a></li>
-                        <li><a href="https://www.youtube.com/Gamede">Youtube</a></li>
-                    </ul>
-                </li>
-            </ul>
-            <p>I'm always open to new opportunities and collaborations. Looking forward to hearing from you!</p>
-           </section>
-        <section id="learn-more">
-            <h2>Learn More</h2>
-            <p>For more details on gaming and software development, click the link below:</p>
-                <ul>
-                     <li><a href="https://www.mabelsgamerinfo.com">https://www.mabelsgamerinfo.com</a></li>
-                </ul>
+            <p>
+                For inquiries or contributions, reach out via email:
+                <a href="mailto:gamedekamajola@gmail.com"
+                    >gamedekamajola@gmail.com</a
+                >
+            </p>
+        </section>
     </main>
     <footer>
-        <p>&copy; 2024 Gamede Website</p>
-       </footer>
+        <p>&copy; 2024 Nursecompanion</p>
+    </footer>
+    <script>
+        function performSearch() {
+            const query = document
+                .getElementById("search-input")
+                .value.toLowerCase();
+            const sections = document.querySelectorAll("main section");
+
+            sections.forEach((section) => {
+                section.style.display = "none"; // Hide all sections by default
+                if (section.innerText.toLowerCase().includes(query)) {
+                    section.style.display = "block"; // Show sections that match the query
+                }
+            });
+        }
+    </script>
 </body>
 </html>
-
