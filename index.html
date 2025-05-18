@@ -102,10 +102,6 @@
       width: 320px;
       box-shadow: 0 0 8px #0073e6;
     }
-    .search-container input::placeholder {
-      color: #999;
-      font-style: italic;
-    }
     .search-container button {
       background-color: #0052cc;
       border: none;
@@ -147,6 +143,22 @@
       font-size: 1.1rem;
       line-height: 1.6;
       color: #204060;
+    }
+    section ul li {
+      margin-bottom: 0.6rem;
+    }
+    section ul li:last-child {
+      margin-bottom: 0;
+    }
+    #contact a {
+      color: #0052cc;
+      font-weight: 700;
+      text-decoration: none;
+      border-bottom: 2px solid transparent;
+      transition: border-color 0.3s ease;
+    }
+    #contact a:hover {
+      border-color: #0052cc;
     }
     footer {
       background: linear-gradient(90deg, #0052cc, #0073e6);
@@ -214,7 +226,7 @@
       <input
         type="text"
         id="search-input"
-        placeholder="Search"
+        placeholder="Search for medications, infections, or problems..."
         aria-label="Search"
       />
       <button onclick="performSearch()">Search</button>
@@ -224,19 +236,10 @@
     <section id="about">
       <h2>About Nursecompanion</h2>
       <p>
-        Nursecompanion is a comprehensive platform designed to support nurses
-        and healthcare providers in delivering quality care. Whether you're a
-        seasoned professional or a nursing student, we provide:
-      </p>
-      <ul>
-        <li>Detailed guides for medical procedures</li>
-        <li>Insights into healthcare best practices</li>
-        <li>Resources for continuous education and growth</li>
-      </ul>
-      <p>
-        Our vision is to bridge the gap between knowledge and practical
-        application, ensuring every nurse is confident and prepared to meet
-        challenges in the healthcare sector.
+        Nursecompanion is your trusted resource for nursing procedures,
+        healthcare tips, and professional growth in the nursing field. Our
+        mission is to empower nurses and healthcare providers through
+        accessible knowledge and tools.
       </p>
     </section>
     <section id="services">
@@ -256,7 +259,7 @@
     </section>
   </main>
   <footer>
-    <p>&copy; 2025 Nursecompanion</p>
+    <p>&copy; 2024 Nursecompanion</p>
   </footer>
   <script>
     function performSearch() {
