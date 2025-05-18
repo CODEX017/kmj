@@ -14,10 +14,8 @@
             background-size: cover;
             background-repeat: no-repeat;
             background-attachment: fixed;
-            /* To make the background image look like a watermark */
             position: relative;
         }
-        /* Overlay to create watermark effect */
         body::before {
             content: "";
             position: fixed;
@@ -116,18 +114,6 @@
         .procedure-form button:hover {
             background-color: #003366;
         }
-        .pdf-container {
-            margin-top: 15px;
-            border: 1px solid #ccc;
-            padding: 10px;
-            background-color: #f9f9f9;
-            border-radius: 8px;
-        }
-        .pdf-container iframe {
-            width: 100%;
-            height: 400px;
-            border: none;
-        }
     </style>
 </head>
 <body>
@@ -138,7 +124,6 @@
         <div>
             <a href="#about">About</a>
             <a href="#services">Services</a>
-            <a href="#procedures">Procedures</a>
             <a href="#contact">Contact</a>
         </div>
         <div class="search-container">
@@ -167,48 +152,6 @@
                 <li>Step-by-step procedures for common nursing tasks</li>
                 <li>Educational resources and tools</li>
             </ul>
-        </section>
-        <section id="procedures">
-            <h2>Procedures</h2>
-            <div class="procedure">
-                <h3>Catheterization</h3>
-                <div class="pdf-container">
-                    <iframe src="catheterization.pdf"></iframe>
-                </div>
-            </div>
-            <div class="procedure">
-                <h3>IV Line Insertion</h3>
-                <div class="pdf-container">
-                    <iframe src="iv-line-insertion.pdf"></iframe>
-                </div>
-            </div>
-        </section>
-        <section id="medical-info">
-            <h2>Medical Information</h2>
-            <div class="procedure-form">
-                <h3>Infections</h3>
-                <label for="infection">Describe the Infection:</label>
-                <textarea
-                    id="infection"
-                    placeholder="Enter details about the infection..."
-                ></textarea>
-            </div>
-            <div class="procedure-form">
-                <h3>Medications</h3>
-                <label for="medication">List the Medications:</label>
-                <textarea
-                    id="medication"
-                    placeholder="Enter details about the medications..."
-                ></textarea>
-            </div>
-            <div class="procedure-form">
-                <h3>Other Medical Problems</h3>
-                <label for="medical-problem">Describe the Problem:</label>
-                <textarea
-                    id="medical-problem"
-                    placeholder="Enter details about the medical problem..."
-                ></textarea>
-            </div>
         </section>
         <section id="contact">
             <h2>Contact</h2>
