@@ -1,235 +1,315 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Nursecompanion</title>
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: #e6f0ff url('gamede1.jpg') no-repeat center center fixed;
-      background-size: cover;
-      color: #003366;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-    }
-    body::before {
-      content: "";
-      position: fixed;
-      top: 0; left: 0;
-      width: 100vw;
-      height: 100vh;
-      background: url('gamede1.jpg') no-repeat center center;
-      background-size: contain;
-      opacity: 0.08;
-      pointer-events: none;
-      z-index: -1;
-      filter: grayscale(80%) blur(2px);
-    }
-    header {
-      background: linear-gradient(90deg, #0052cc, #0073e6);
-      padding: 2rem 1rem;
-      text-align: center;
-      color: #f0f8ff;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    }
-    header h1 {
-      font-weight: 900;
-      font-size: 2.5rem;
-      letter-spacing: 2px;
-      text-shadow: 1px 1px 5px rgba(0,0,0,0.3);
-      animation: fadeInDown 1.2s ease forwards;
-    }
-    nav {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      background-color: #cce0ff;
-      padding: 1rem 2rem;
-      border-radius: 12px;
-      margin: 1rem auto;
-      width: 90%;
-      max-width: 1200px;
-      box-shadow: 0 6px 15px rgba(0,0,0,0.1);
-      font-weight: 600;
-    }
-    nav a {
-      display: block;
-      color: #004080;
-      text-decoration: none;
-      margin: 0.5rem 0;
-      font-size: 1.1rem;
-      position: relative;
-      transition: color 0.3s ease;
-    }
-    nav a::after {
-      content: '';
-      position: absolute;
-      width: 0;
-      height: 2px;
-      bottom: -5px;
-      left: 0;
-      background-color: #0052cc;
-      transition: width 0.3s;
-    }
-    nav a:hover {
-      color: #0073e6;
-    }
-    nav a:hover::after {
-      width: 100%;
-    }
-    main {
-      flex-grow: 1;
-      max-width: 900px;
-      margin: 2rem auto 4rem auto;
-      background: #ffffffdd;
-      border-radius: 16px;
-      padding: 3rem 3rem 4rem 3rem;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.12);
-      animation: fadeInUp 1.2s ease forwards;
-    }
-    section {
-      display: none;
-      margin-bottom: 3rem;
-    }
-    section.active {
-      display: block;
-    }
-    section h2 {
-      font-size: 2rem;
-      margin-bottom: 1rem;
-      color: #003366;
-      border-bottom: 3px solid #0073e6;
-      padding-bottom: 6px;
-      letter-spacing: 1.2px;
-    }
-    section p,
-    section ul {
-      font-size: 1.1rem;
-      line-height: 1.6;
-      color: #204060;
-    }
-    section ul li {
-      margin-bottom: 0.6rem;
-    }
-    section ul li:last-child {
-      margin-bottom: 0;
-    }
-    #contact a {
-      color: #0052cc;
-      font-weight: 700;
-      text-decoration: none;
-      border-bottom: 2px solid transparent;
-      transition: border-color 0.3s ease;
-    }
-    #contact a:hover {
-      border-color: #0052cc;
-    }
-    footer {
-      background: linear-gradient(90deg, #0052cc, #0073e6);
-      color: #f0f8ff;
-      text-align: center;
-      padding: 1rem 0;
-      font-weight: 600;
-      font-size: 1rem;
-      box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.15);
-      position: fixed;
-      bottom: 0;
-      width: 100%;
-      z-index: 100;
-    }
-    @keyframes fadeInDown {
-      from {
-        opacity: 0;
-        transform: translateY(-20px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-    @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(20px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-    @media (max-width: 600px) {
-      nav {
-        align-items: center;
-        padding: 1rem;
-      }
-      main {
-        margin: 1rem;
-        padding: 2rem 1.5rem 3rem 1.5rem;
-      }
-      section h2 {
-        font-size: 1.6rem;
-      }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gamede Website</title>
+    <style>
+        /* Existing styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+        }
+        header {
+            background-color: #333333;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+        }
+        nav {
+            margin: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            display: none; /* Initially hidden on login form */
+        }
+        nav a {
+            margin: 0 10px;
+            text-decoration: none;
+            color: #333;
+        }
+        .search-container {
+            display: none; /* Initially hidden on login form */
+        }
+        main {
+            padding: 20px;
+            display: none; /* Initially hidden */
+        }
+        section {
+            margin-bottom: 20px;
+        }
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+        .search-container {
+            display: flex;
+            align-items: center;
+        }
+        .search-container input[type="text"] {
+            padding: 5px;
+            font-size: 16px;
+        }
+        .search-container button {
+            padding: 5px 10px;
+            font-size: 16px;
+            background-color: #333;
+            color: rgb(148, 59, 59);
+            border: none;
+            cursor: pointer;
+        }
+        .search-container button:hover {
+            background-color: #555;
+        }
+        .hidden {
+            display: none;
+        }
+        .login-container, .signup-container {
+            background-color: #00ff2200;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            margin: 0 auto;
+            max-width: 400px;
+        }
+        .login-container h2, .signup-container h2 {
+            color: #1877f2;
+        }
+        .login-container label, .signup-container label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 14px;
+            color: #333;
+        }
+        .login-container input, .signup-container input {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .login-container button, .signup-container button {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            background-color: #1877f2;
+            color: #FFBF00;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .login-container button:hover, .signup-container button:hover {
+            background-color: #165eab;
+        }
+        .toggle-links {
+            margin-top: 20px;
+        }
+        .toggle-links a {
+            color: #1877f2;
+            text-decoration: none;
+        }
+        .toggle-links a:hover {
+            text-decoration: underline;
+        }
+        .error-message {
+            color: red;
+            margin-top: -10px;
+            margin-bottom: 15px;
+            font-size: 12px;
+            text-align: left;
+        }
+    </style>
 </head>
 <body>
-  <header>
-    <h1>Welcome to Nursecompanion</h1>
-  </header>
-  <nav>
-    <div>
-      <a href="#about" onclick="showSection('about')">About</a>
-      <a href="#services" onclick="showSection('services')">Services</a>
-      <a href="#contact" onclick="showSection('contact')">Contact</a>
+    <header>
+        <h1>Welcome to Gamede Website</h1>
+    </header>
+    <nav id="mainNav">
+        <div>
+            <a href="#about">About</a>
+            <a href="#services">Services</a>
+            <a href="#contact">Contact</a>
+            <a href="#learn-more">Learn More</a>
+        </div>
+        <div class="search-container">
+            <input type="text" placeholder="Search..." name="search">
+            <button type="submit">Search</button>
+        </div>
+    </nav>
+    
+    <!-- Login Form (Displayed Initially) -->
+    <div id="loginForm" class="login-container">
+        <h2>Login</h2>
+        <form id="loginFormElement">
+            <label for="loginUsername">Username</label>
+            <input type="text" id="loginUsername" name="loginUsername" required>
+            <label for="loginPassword">Password</label>
+            <input type="password" id="loginPassword" name="loginPassword" required>
+            <div class="error-message" id="loginError"></div>
+            <button type="submit">Login</button>
+        </form>
+        <div class="toggle-links">
+            <a href="#" id="toggleToSignup">Don't have an account? Sign up</a>
+        </div>
     </div>
-  </nav>
-  <main>
-    <section id="about">
-      <h2>About Nursecompanion</h2>
-      <p>
-        Nursecompanion is your trusted resource for nursing procedures,
-        healthcare tips, and professional growth in the nursing field. Our
-        mission is to empower nurses and healthcare providers through
-        accessible knowledge and tools.
-      </p>
-    </section>
-    <section id="services">
-      <h2>Services</h2>
-      <ul>
-        <li>Comprehensive nursing guides</li>
-        <li>Step-by-step procedures for common nursing tasks</li>
-        <li>Educational resources and tools</li>
-      </ul>
-    </section>
-    <section id="contact">
-      <h2>Contact</h2>
-      <p>
-        For inquiries or contributions, reach out via email:
-        <a href="mailto:gamedekamajola@gmail.com">gamedekamajola@gmail.com</a>
-      </p>
-    </section>
-  </main>
-  <footer>
-    <p>&copy; 2024 Nursecompanion</p>
-  </footer>
-  <script>
-    function showSection(sectionId) {
-      const sections = document.querySelectorAll("main section");
-      sections.forEach((section) => {
-        if (section.id === sectionId) {
-          section.classList.add("active");
-        } else {
-          section.classList.remove("active");
+
+    <!-- Sign-Up Form (Hidden Initially) -->
+    <div id="signupForm" class="signup-container hidden">
+        <h2>Sign Up</h2>
+        <form id="signupFormElement">
+            <label for="signupUsername">Username</label>
+            <input type="text" id="signupUsername" name="signupUsername" required>
+            <label for="signupEmail">Email</label>
+            <input type="email" id="signupEmail" name="signupEmail" required>
+            <label for="signupPassword">Password</label>
+            <input type="password" id="signupPassword" name="signupPassword" minlength="12" required>
+            <div class="error-message" id="signupError"></div>
+            <button type="submit">Sign Up</button>
+        </form>
+        <div class="toggle-links">
+            <a href="#" id="toggleToLogin">Already have an account? Log in</a>
+        </div>
+    </div>
+
+    <!-- Main Content (Initially Hidden) -->
+    <main id="mainContent">
+        <!-- About Section -->
+        <section id="about">
+            <h2>About Me</h2>
+            <p>Hi, my name is Gamede KaMajola, and I'm a passionate gamer and developer. I created this website to share my love for gaming and technology with the world. Here's a little bit more about me:</p>
+            <ul>
+                <li><strong>Name:</strong> Gamede KaMajola</li>
+                <li><strong>Email:</strong> <a href="mailto:gamede@gmail.com">gamede@gmail.com</a></li>
+                <li><strong>Phone number:</strong> +266 59499914</li>
+                <li><strong>Address:</strong> Lefikeng</li>
+                <li><strong>Title:</strong> Top Notch</li>
+                <li><strong>Job:</strong> Gamer/Software Developer</li>
+                <li><strong>Hobbies:</strong>
+                    <ul>
+                        <li>Playing video games</li>
+                        <li>Developing game-related software</li>
+                    </ul>
+                </li>
+            </ul>
+            <p>I have always been fascinated by the world of gaming, and I spend most of my time exploring new games, improving my skills, and sharing my experiences with others. Whether it's through live streams, tutorials, or just playing with friends, I love every aspect of gaming.</p>
+            <p>Feel free to reach out if you share the same passion or want to collaborate on a project!</p>
+        </section>
+
+        <!-- Services Section -->
+        <section id="services">
+            <h2>Services</h2>
+            <p>As a dedicated gamer and developer, I offer a range of services to help you improve your gaming experience and achieve your goals. Here are some of the services I provide:</p>
+            <ul>
+                <li><strong>Game Coaching:</strong> Personalized coaching sessions to help you improve your skills in various games.</li>
+                <li><strong>Game Development:</strong> Custom game development services for noobie developers and gaming enthusiasts.</li>
+                <li><strong>Tournament Preparation:</strong> Strategies and training plans to help you prepare for gaming tournaments.</li>
+            </ul>
+            <p>If you're interested in any of these services, feel free to contact me for more details and pricing information.</p>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact">
+            <h2>Contact</h2>
+            <p>If you have any questions, want to collaborate, or need any of my services, please reach out to me through the following methods:</p>
+            <ul>
+                <li><strong>Email:</strong> <a href="mailto:gamede@gmail.com">gamede@gmail.com</a></li>
+                <li><strong>Phone:</strong> +266 59499914</li>
+                <li><strong>Address:</strong> Lefikeng</li>
+                <li><strong>Social Media:</strong>
+                    <ul>
+                        <li><a href="https://www.instagram.com/mabel_ebele">Instagram</a></li>
+                        <li><a href="https://www.facebook.com/Gamede Kamajola">Facebook</a></li>
+                        <li><a href="https://www.youtube.com/Gamede">YouTube</a></li>
+                        <p>YouTube channel does not exist</p>
+                    </ul>
+                </li>
+            </ul>
+            <p>I'm always open to new opportunities and collaborations. Looking forward to hearing from you!</p>
+        </section>
+
+        <!-- Learn More Section -->
+        <section id="learn-more">
+            <h2>Learn More</h2>
+            <p>For more details on gaming and software development, click the link below:</p>
+            <p>NB: I don't know any of this shit🙌</p>
+            <ul>
+                <li><a href="https://www.mabelsgamerinfo.com">https://www.mabelsgamerinfo.com</a></li>
+            </ul>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Gamede KaMajola</p>
+    </footer>
+
+    <script>
+        // JavaScript to toggle between Sign-Up and Login Forms
+        document.getElementById('toggleToLogin').addEventListener('click', function(event) {
+            event.preventDefault();
+            document.getElementById('signupForm').classList.add('hidden');
+            document.getElementById('loginForm').classList.remove('hidden');
+            document.getElementById('mainNav').style.display = 'none'; // Hide navigation on login form
+        });
+
+        document.getElementById('toggleToSignup').addEventListener('click', function(event) {
+            event.preventDefault();
+            document.getElementById('loginForm').classList.add('hidden');
+            document.getElementById('signupForm').classList.remove('hidden');
+            document.getElementById('mainNav').style.display = 'none'; // Hide navigation on signup form
+        });
+
+        // JavaScript for form authentication
+        const validCredentials = {
+            username: 'gamede017',
+            email: 'gamede@gmail.com',
+            password: 'asdf1234lite'
+        };
+
+        document.getElementById('loginFormElement').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const username = document.getElementById('loginUsername').value;
+            const password = document.getElementById('loginPassword').value;
+            const errorElement = document.getElementById('loginError');
+
+            if (username === validCredentials.username && password === validCredentials.password) {
+                alert('Successfully Logged in! Good Luck!!!');
+                showMainContent(); // Show main content after login
+            } else {
+                errorElement.textContent = 'Invalid username or password.';
+            }
+        });
+
+        document.getElementById('signupFormElement').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const username = document.getElementById('signupUsername').value;
+            const email = document.getElementById('signupEmail').value;
+            const password = document.getElementById('signupPassword').value;
+            const errorElement = document.getElementById('signupError');
+
+            if (username === validCredentials.username && email === validCredentials.email && password === validCredentials.password) {
+                alert('Sign up successful! You can now log in.');
+                document.getElementById('signupForm').classList.add('hidden');
+                document.getElementById('loginForm').classList.remove('hidden');
+            } else {
+                errorElement.textContent = 'Invalid details provided.';
+            }
+        });
+
+        // JavaScript to show main content after successful sign-up
+        function showMainContent() {
+            document.getElementById('signupForm').classList.add('hidden');
+            document.getElementById('loginForm').classList.add('hidden');
+            document.getElementById('mainContent').style.display = 'block';
+            document.getElementById('mainNav').style.display = 'flex'; // Show navigation after login
         }
-      });
-    }
-  </script>
+    </script>
 </body>
 </html>
