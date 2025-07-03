@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>NurseCompanion</title>
   <style>
+    /* ---------- Base layout & background ---------- */
     body {
       font-family: Arial, sans-serif;
       margin: 0;
@@ -17,19 +18,9 @@
       background-position: center center;
       background-size: 200px 200px;
       background-attachment: fixed;
-      opacity: 0.95; /* optional to add slight fading to entire body if needed */
     }
 
-    header {
-      background-color: #008080;
-      color: white;
-      padding: 15px;
-      text-align: center;
-      font-size: 24px;
-      font-weight: bold;
-      width: 100%;
-    }
-
+    /* ---------- Sidebar navigation ---------- */
     nav {
       background-color: #005f5f;
       padding: 10px;
@@ -37,98 +28,115 @@
       display: flex;
       flex-direction: column;
     }
-
     nav a {
-      color: white;
+      color: #fff;
       text-decoration: none;
       margin: 10px 0;
       font-size: 18px;
       cursor: pointer;
     }
+    nav a:hover { text-decoration: underline; }
 
-    nav a:hover {
-      text-decoration: underline;
+    /* ---------- Header ---------- */
+    header {
+      background-color: #008080;
+      color: #fff;
+      padding: 15px;
+      text-align: center;
+      font-size: 24px;
+      font-weight: bold;
+      width: 100%;
     }
 
+    /* ---------- Content containers ---------- */
     .container {
       max-width: 1200px;
       margin: 20px;
       padding: 20px;
-      background: rgba(255, 255, 255, 0.95); /* slightly transparent to show background subtly */
+      background: rgba(255, 255, 255, 0.95);
       box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
       border-radius: 8px;
-      display: none;
+      display: none;            /* hidden by default */
       flex: 1;
     }
-
     h2 {
       color: #008080;
       border-bottom: 2px solid #005f5f;
       padding-bottom: 5px;
     }
+    .section { margin-bottom: 20px; }
 
-    footer {
-      background-color: #005f5f;
-      color: white;
-      text-align: center;
-      padding: 10px;
-      position: fixed;
-      bottom: 0;
-      width: calc(100% - 200px);
-      margin-left: 200px;
+    /* ---------- Responsive image gallery ---------- */
+    .image-gallery {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      justify-content: center;
+      margin-top: 15px;
+    }
+    .image-gallery img {
+      flex: 1 1 300px;          /* minimum width 300 px, grow as space allows */
+      max-width: 100%;
+      height: auto;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      object-fit: cover;
     }
 
+    /* ---------- Buttons ---------- */
     .button {
       background-color: #008080;
-      color: white;
+      color: #fff;
       padding: 10px 20px;
       border: none;
       border-radius: 5px;
       cursor: pointer;
       font-size: 16px;
     }
+    .button:hover { background-color: #005f5f; }
 
-    .button:hover {
-      background-color: #005f5f;
+    /* ---------- Footer without background ---------- */
+    footer {
+      background: none;
+      color: #333;
+      text-align: center;
+      padding: 10px;
+      position: fixed;
+      bottom: 0;
+      width: calc(100% - 200px);
+      margin-left: 200px;
+      font-size: 14px;
     }
 
-    .section {
-      margin-bottom: 20px;
-    }
-
-    ul {
-      list-style: none;
-      padding: 0;
-    }
-
-    ul li {
-      margin: 10px 0;
-    }
+    /* ---------- Lists ---------- */
+    ul { list-style: none; padding: 0; }
+    ul li { margin: 10px 0; }
   </style>
+
   <script>
+    /* --- Simple section‑toggle script --- */
     document.addEventListener('DOMContentLoaded', () => {
       const links = document.querySelectorAll('nav a');
       const sections = document.querySelectorAll('.container');
 
       links.forEach(link => {
-        link.addEventListener('click', (event) => {
-          event.preventDefault();
+        link.addEventListener('click', (e) => {
+          e.preventDefault();
           const targetId = link.getAttribute('href').substring(1);
-
-          sections.forEach(section => {
-            section.style.display = 'none';
-          });
-
-          const targetSection = document.getElementById(targetId);
-          if (targetSection) {
-            targetSection.style.display = 'block';
-          }
+          sections.forEach(sec => sec.style.display = 'none');
+          const target = document.getElementById(targetId);
+          if (target) target.style.display = 'block';
         });
       });
+
+      /* Show About section by default */
+      document.getElementById('about').style.display = 'block';
     });
   </script>
 </head>
+
 <body>
+  <!-- ---------- Sidebar ---------- -->
   <nav>
     <a href="#about">About</a>
     <a href="#services">Services</a>
@@ -136,18 +144,37 @@
     <a href="#contact">Contact</a>
   </nav>
 
+  <!-- ---------- Main area ---------- -->
   <div style="flex: 1;">
     <header>
-      NurseCompanion - Your Trusted Healthcare Partner
+      NurseCompanion&nbsp;&ndash;&nbsp;Your Trusted Healthcare Partner
     </header>
 
+    <!-- About section with gallery -->
     <div id="about" class="container">
       <section class="section">
-        <h2>About Us</h2>
-        <p>Welcome to NurseCompanion, your reliable partner in navigating the complexities of healthcare...</p>
+        <h2>About&nbsp;Us</h2>
+        <p>
+          Welcome to <strong>NurseCompanion</strong>, your reliable partner in
+          navigating the complexities of healthcare. Our mission is to empower
+          nurses, caregivers, and healthcare enthusiasts by providing resources,
+          tips, and support to excel in their roles. Together, we aim to make
+          healthcare more accessible and efficient for everyone.
+        </p>
+
+        <!-- Responsive gallery -->
+        <div class="image-gallery">
+          <img src="https://www.nul.ls/wp-content/uploads/2023/10/2023-grads-hlt-pledge-1536x1024.jpg"
+               alt="NUL 2023 graduates taking health pledge">
+          <img src="https://tse1.mm.bing.net/th/id/OIP.L8kYo-btB-I3577MijQM7gHaHa?r=0&rs=1&pid=ImgDetMain&o=7&rm=3"
+               alt="Healthcare teamwork illustration">
+          <img src="https://africa-school-bucket3.s3.amazonaws.com/static/img/school/2022/03/07/lesothouni.jpg"
+               alt="National University of Lesotho campus view">
+        </div>
       </section>
     </div>
 
+    <!-- Services -->
     <div id="services" class="container">
       <section class="section">
         <h2>Services</h2>
@@ -158,33 +185,36 @@
       </section>
     </div>
 
+    <!-- Educational Resources -->
     <div id="resources" class="container">
       <section class="section">
         <h2>Educational Resources</h2>
         <ul>
           <li><strong>Webinars:</strong> Live and recorded sessions on healthcare topics.</li>
-          <li><strong>Tutorials:</strong> Step-by-step guides to improve your skills.</li>
-          <li><strong>Articles:</strong> Informative write-ups by industry experts.</li>
+          <li><strong>Tutorials:</strong> Step‑by‑step guides to improve your skills.</li>
+          <li><strong>Articles:</strong> Informative write‑ups by industry experts.</li>
           <li><strong>Downloadable Resources:</strong> PDFs, templates, and cheat sheets.</li>
           <li><strong>Document:</strong> <a href="https://drive.google.com/file/d/1GYg4xYBrNeUbV6IZCctmuHLjdyXWZrZN/view?usp=sharing" target="_blank">Access Document</a></li>
         </ul>
       </section>
     </div>
 
+    <!-- Contact -->
     <div id="contact" class="container">
       <section class="section">
-        <h2>Contact Us</h2>
-        <p>If you have any questions, suggestions, or need assistance, feel free to reach out. We're here to help!</p>
+        <h2>Contact&nbsp;Us</h2>
+        <p>
+          If you have any questions, suggestions, or need assistance, feel free
+          to reach out. We're here to help!
+        </p>
         <ul>
           <li><strong>Email:</strong> <a href="mailto:support@nursecompanion.com">support@nursecompanion.com</a></li>
-          <li><strong>Phone:</strong> +123 456 7890</li>
+          <li><strong>Phone:</strong> +123&nbsp;456&nbsp;7890</li>
         </ul>
       </section>
     </div>
   </div>
 
-  <footer>
-    &copy; 2025 NurseCompanion. All rights reserved.
-  </footer>
+  <footer>&copy; 2025 NurseCompanion. All rights reserved.</footer>
 </body>
 </html>
