@@ -5,34 +5,48 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>NurseCompanion</title>
   <style>
+    * {
+      box-sizing: border-box;
+    }
+
     body {
-      font-family: Arial, sans-serif;
       margin: 0;
       padding: 0;
-      background-color: #f9f9f9;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-size: 18px;
+      line-height: 1.6;
       color: #333;
-      display: flex;
+      background-color: #f9f9f9;
+    }
+
+    .background-layer {
+      position: relative;
+      width: 100vw;
+      height: 100vh;
       background-image: url('https://media.licdn.com/dms/image/C4E0BAQFhTkxIXRsFhQ/company-logo_200_200/0/1630567312084/national_university_of_lesotho_logo?e=2147483647&v=beta&t=D8263QcjDRrzlshLLcwLGDQQOMaYmLLqZT0PIwcLSuk');
       background-repeat: no-repeat;
       background-position: center center;
       background-size: 200px 200px;
       background-attachment: fixed;
+      display: flex;
+      flex-direction: row;
     }
 
-    header {
-      background-color: #008080;
-      color: white;
-      padding: 15px;
-      text-align: center;
-      font-size: 24px;
-      font-weight: bold;
+    .content-layer {
+      position: absolute;
+      top: 0;
+      left: 0;
       width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: row;
+      background-color: rgba(255, 255, 255, 0.92);
     }
 
     nav {
       background-color: #005f5f;
-      padding: 10px;
-      width: 200px;
+      padding: 20px 10px;
+      width: 220px;
       display: flex;
       flex-direction: column;
     }
@@ -40,60 +54,52 @@
     nav a {
       color: white;
       text-decoration: none;
-      margin: 10px 0;
-      font-size: 18px;
-      cursor: pointer;
+      margin: 15px 0;
+      font-size: 20px;
+      font-weight: 500;
+      transition: all 0.3s ease;
     }
 
     nav a:hover {
       text-decoration: underline;
+      margin-left: 5px;
+    }
+
+    header {
+      background-color: #008080;
+      color: white;
+      padding: 20px;
+      text-align: center;
+      font-size: 34px;
+      font-weight: bold;
+      width: 100%;
+      border-top-left-radius: 10px;
+    }
+
+    .main-content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      margin: 20px;
     }
 
     .container {
-      max-width: 1200px;
-      margin: 20px;
-      padding: 20px;
-      background: rgba(255, 255, 255, 0.95);
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-      border-radius: 8px;
+      background: white;
+      padding: 25px;
+      margin-top: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
       display: none;
-      flex: 1;
+      overflow-y: auto;
+      max-height: 65vh;
     }
 
     h2 {
+      font-size: 26px;
       color: #008080;
+      margin-bottom: 10px;
       border-bottom: 2px solid #005f5f;
       padding-bottom: 5px;
-    }
-
-    footer {
-      background: none;
-      color: #333;
-      text-align: center;
-      padding: 10px;
-      position: fixed;
-      bottom: 0;
-      width: calc(100% - 200px);
-      margin-left: 200px;
-      font-size: 14px;
-    }
-
-    .button {
-      background-color: #008080;
-      color: white;
-      padding: 10px 20px;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      font-size: 16px;
-    }
-
-    .button:hover {
-      background-color: #005f5f;
-    }
-
-    .section {
-      margin-bottom: 20px;
     }
 
     ul {
@@ -104,6 +110,43 @@
     ul li {
       margin: 10px 0;
     }
+
+    a {
+      color: #008080;
+    }
+
+    footer {
+      text-align: center;
+      font-size: 16px;
+      margin-top: auto;
+      padding: 15px;
+      background: none;
+      color: #555;
+    }
+
+    @media (max-width: 768px) {
+      .background-layer {
+        flex-direction: column;
+      }
+
+      nav {
+        flex-direction: row;
+        width: 100%;
+        justify-content: space-around;
+      }
+
+      .main-content {
+        margin: 10px;
+      }
+
+      header {
+        font-size: 24px;
+      }
+
+      nav a {
+        font-size: 16px;
+      }
+    }
   </style>
   <script>
     document.addEventListener('DOMContentLoaded', () => {
@@ -111,7 +154,7 @@
       const sections = document.querySelectorAll('.container');
 
       links.forEach(link => {
-        link.addEventListener('click', (event) => {
+        link.addEventListener('click', event => {
           event.preventDefault();
           const targetId = link.getAttribute('href').substring(1);
 
@@ -129,62 +172,58 @@
   </script>
 </head>
 <body>
-  <nav>
-    <a href="#about">About</a>
-    <a href="#services">Services</a>
-    <a href="#resources">Educational Resources</a>
-    <a href="#contact">Contact</a>
-  </nav>
+  <div class="background-layer">
+    <div class="content-layer">
+      <nav>
+        <a href="#about">About</a>
+        <a href="#services">Services</a>
+        <a href="#resources">Educational Resources</a>
+        <a href="#contact">Contact</a>
+      </nav>
 
-  <div style="flex: 1;">
-    <header>
-      NurseCompanion - Your Trusted Healthcare Partner
-    </header>
+      <div class="main-content">
+        <header>
+          NurseCompanion - Your Trusted Healthcare Partner
+        </header>
 
-    <div id="about" class="container">
-      <section class="section">
-        <h2>About Us</h2>
-        <p>Welcome to NurseCompanion, your reliable partner in navigating the complexities of healthcare. Our mission is to empower nurses, caregivers, and healthcare enthusiasts by providing resources, tips, and support to excel in their roles. Together, we aim to make healthcare more accessible and efficient for everyone.</p>
-      </section>
-    </div>
+        <div id="about" class="container">
+          <h2>About Us</h2>
+          <p>Welcome to NurseCompanion, your reliable partner in navigating the complexities of healthcare. Our mission is to empower nurses, caregivers, and healthcare enthusiasts by providing resources, tips, and support to excel in their roles. Together, we aim to make healthcare more accessible and efficient for everyone.</p>
+        </div>
 
-    <div id="services" class="container">
-      <section class="section">
-        <h2>Services</h2>
-        <ul>
-          <li><strong>Professional Guidance:</strong> Personalized advice for nurses and caregivers.</li>
-          <li><strong>Support Community:</strong> Join our network of healthcare professionals for sharing and support.</li>
-        </ul>
-      </section>
-    </div>
+        <div id="services" class="container">
+          <h2>Services</h2>
+          <ul>
+            <li><strong>Professional Guidance:</strong> Personalized advice for nurses and caregivers.</li>
+            <li><strong>Support Community:</strong> Join our network of healthcare professionals for sharing and support.</li>
+          </ul>
+        </div>
 
-    <div id="resources" class="container">
-      <section class="section">
-        <h2>Educational Resources</h2>
-        <ul>
-          <li><strong>Webinars:</strong> Live and recorded sessions on healthcare topics.</li>
-          <li><strong>Tutorials:</strong> Step-by-step guides to improve your skills.</li>
-          <li><strong>Articles:</strong> Informative write-ups by industry experts.</li>
-          <li><strong>Downloadable Resources:</strong> PDFs, templates, and cheat sheets.</li>
-          <li><strong>Document:</strong> <a href="https://drive.google.com/file/d/1GYg4xYBrNeUbV6IZCctmuHLjdyXWZrZN/view?usp=sharing" target="_blank">Access Document</a></li>
-        </ul>
-      </section>
-    </div>
+        <div id="resources" class="container">
+          <h2>Educational Resources</h2>
+          <ul>
+            <li><strong>Webinars:</strong> Live and recorded sessions on healthcare topics.</li>
+            <li><strong>Tutorials:</strong> Step-by-step guides to improve your skills.</li>
+            <li><strong>Articles:</strong> Informative write-ups by industry experts.</li>
+            <li><strong>Downloadable Resources:</strong> PDFs, templates, and cheat sheets.</li>
+            <li><strong>Document:</strong> <a href="https://drive.google.com/file/d/1GYg4xYBrNeUbV6IZCctmuHLjdyXWZrZN/view?usp=sharing" target="_blank">Access Document</a></li>
+          </ul>
+        </div>
 
-    <div id="contact" class="container">
-      <section class="section">
-        <h2>Contact Us</h2>
-        <p>If you have any questions, suggestions, or need assistance, feel free to reach out. We're here to help!</p>
-        <ul>
-          <li><strong>Email:</strong> <a href="mailto:support@nursecompanion.com">support@nursecompanion.com</a></li>
-          <li><strong>Phone:</strong> +123 456 7890</li>
-        </ul>
-      </section>
+        <div id="contact" class="container">
+          <h2>Contact Us</h2>
+          <p>If you have any questions, suggestions, or need assistance, feel free to reach out. We're here to help!</p>
+          <ul>
+            <li><strong>Email:</strong> <a href="mailto:support@nursecompanion.com">support@nursecompanion.com</a></li>
+            <li><strong>Phone:</strong> +123 456 7890</li>
+          </ul>
+        </div>
+
+        <footer>
+          &copy; 2025 NurseCompanion. All rights reserved.
+        </footer>
+      </div>
     </div>
   </div>
-
-  <footer>
-    &copy; 2025 NurseCompanion. All rights reserved.
-  </footer>
 </body>
 </html>
