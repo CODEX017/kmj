@@ -3,91 +3,22 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Nursing Resources</title>
+  <title>NurseCompanion Navigation</title>
   <style>
     body { font-family: Arial, sans-serif; margin: 0; padding: 0; }
-    header { background: #0077b6; color: white; padding: 1rem; text-align: center; }
-    nav { background: #0096c7; padding: 0.5rem; display: flex; flex-wrap: wrap; justify-content: center; }
-    nav a { color: white; margin: 0.5rem 1rem; text-decoration: none; font-weight: bold; }
+    nav { background: #0096c7; padding: 1rem; display: flex; justify-content: center; gap: 20px; }
+    nav a { color: white; text-decoration: none; font-weight: bold; font-size: 1rem; }
     nav a:hover { text-decoration: underline; }
-    main { padding: 2rem; }
-    h2 { color: #023e8a; margin-top: 2rem; }
-    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 1rem; }
-    .card { background: #f1f1f1; padding: 1rem; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
-    .card a { text-decoration: none; color: #0077b6; font-weight: bold; }
-    .card a:hover { text-decoration: underline; }
   </style>
 </head>
 <body>
-  <header>
-    <h1>Nursing Resources</h1>
-  </header>
   <nav>
     <a href="#careplans">Care Plans</a>
     <a href="#diagnosis">Nursing Diagnosis</a>
     <a href="#resources">Resources</a>
-    <a href="#examprep">Exam Prep</a>
     <a href="#studynotes">Study Notes</a>
-    <a href="#quizzes">Quizzes</a>
-    <a href="#clinical">Clinical Resources</a>
+    <a href="#contact">Contact</a>
+    <a href="#about">About</a>
   </nav>
-  <main>
-    <section id="careplans">
-      <h2>Nursing Care Plans</h2>
-      <div class="grid" id="carePlansGrid"></div>
-    </section>
-    <section id="diagnosis">
-      <h2>Nursing Diagnosis</h2>
-      <div class="grid" id="diagnosisGrid"></div>
-    </section>
-    <section id="resources">
-      <h2>Educational Resources</h2>
-      <div class="grid" id="resourcesGrid"></div>
-    </section>
-    <section id="examprep">
-      <h2>Nursing Exam Prep</h2>
-      <div class="grid" id="examPrepGrid"></div>
-    </section>
-    <section id="studynotes">
-      <h2>Study Notes</h2>
-      <div class="grid" id="studyNotesGrid"></div>
-    </section>
-    <section id="quizzes">
-      <h2>Quizzes</h2>
-      <div class="grid" id="quizzesGrid"></div>
-    </section>
-    <section id="clinical">
-      <h2>Clinical Resources</h2>
-      <div class="grid" id="clinicalGrid"></div>
-    </section>
-  </main>
-
-  <script>
-    const resources = [
-      { category: "carePlansGrid", title: "Sample Care Plan 1", link: "https://drive.google.com/file/d/.../view" },
-      { category: "carePlansGrid", title: "Sample Care Plan 2", link: "https://drive.google.com/file/d/.../view" },
-      { category: "diagnosisGrid", title: "Common Nursing Diagnoses", link: "https://drive.google.com/file/d/.../view" },
-      { category: "resourcesGrid", title: "Pharmacology Notes", link: "https://drive.google.com/file/d/.../view" },
-      { category: "resourcesGrid", title: "Medical-Surgical Nursing Notes", link: "https://drive.google.com/file/d/.../view" },
-      { category: "examPrepGrid", title: "Fundamentals Exam Prep", link: "https://drive.google.com/file/d/.../view" },
-      { category: "examPrepGrid", title: "Pathophysiology Review Questions", link: "https://drive.google.com/file/d/.../view" },
-      { category: "studyNotesGrid", title: "Anatomy & Physiology Notes", link: "https://drive.google.com/file/d/.../view" },
-      { category: "studyNotesGrid", title: "Pediatrics Study Notes", link: "https://drive.google.com/file/d/.../view" },
-      { category: "quizzesGrid", title: "Pharmacology Quiz", link: "https://drive.google.com/file/d/.../view" },
-      { category: "quizzesGrid", title: "Community Health Quiz", link: "https://drive.google.com/file/d/.../view" },
-      { category: "clinicalGrid", title: "Clinical Guidelines", link: "https://drive.google.com/file/d/.../view" },
-      { category: "clinicalGrid", title: "Lab Values Reference", link: "https://drive.google.com/file/d/.../view" },
-    ];
-
-    resources.forEach(item => {
-      const grid = document.getElementById(item.category);
-      if (grid) {
-        const card = document.createElement('div');
-        card.className = 'card';
-        card.innerHTML = `<a href="${item.link}" target="_blank">${item.title}</a>`;
-        grid.appendChild(card);
-      }
-    });
-  </script>
 </body>
 </html>
