@@ -59,7 +59,7 @@
       color: #333;
     }
 
-    /* Blog Styles */
+    /* Blog Section */
     .blog {
       margin-top: 2rem;
       text-align: left;
@@ -70,6 +70,39 @@
     .blog h2 {
       color: #0096c7;
       margin-bottom: 1rem;
+      text-align: center;
+    }
+
+    .blog-form {
+      background: #ffffff;
+      padding: 1rem;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+      margin-bottom: 2rem;
+    }
+
+    .blog-form input,
+    .blog-form textarea {
+      width: 100%;
+      padding: 0.7rem;
+      margin: 0.5rem 0;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 1rem;
+    }
+
+    .blog-form button {
+      background: #0096c7;
+      color: white;
+      border: none;
+      padding: 0.7rem 1.5rem;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .blog-form button:hover {
+      background: #0077a3;
     }
 
     .post {
@@ -113,26 +146,49 @@
     </div>
 
     <section id="blog" class="blog">
-      <h2>Latest Blog Posts</h2>
+      <h2>Community Blog</h2>
 
-      <div class="post">
-        <h3>5 Tips to Ace Your Nursing Exams</h3>
-        <small>Posted on Sept 1, 2025</small>
-        <p>Studying for nursing exams can feel overwhelming, but with the right strategy, you can excel. Here are five proven tips to help you stay prepared and confident.</p>
+      <!-- Blog Form -->
+      <div class="blog-form">
+        <input type="text" id="title" placeholder="Enter your post title" />
+        <textarea id="content" rows="4" placeholder="Write your post..."></textarea>
+        <button onclick="addPost()">Publish</button>
       </div>
 
-      <div class="post">
-        <h3>Understanding Care Plans Made Easy</h3>
-        <small>Posted on Aug 28, 2025</small>
-        <p>Care plans don’t have to be complicated. In this guide, we break down the basics of writing effective and concise nursing care plans.</p>
-      </div>
-
-      <div class="post">
-        <h3>The Importance of Self-Care for Nurses</h3>
-        <small>Posted on Aug 20, 2025</small>
-        <p>Nursing can be physically and emotionally demanding. Learn simple ways to take care of yourself so you can continue to care for others effectively.</p>
-      </div>
+      <!-- Blog Posts -->
+      <div id="posts"></div>
     </section>
   </main>
+
+  <script>
+    function addPost() {
+      const title = document.getElementById("title").value.trim();
+      const content = document.getElementById("content").value.trim();
+      if (!title || !content) {
+        alert("Please enter a title and content!");
+        return;
+      }
+
+      const postsDiv = document.getElementById("posts");
+
+      const post = document.createElement("div");
+      post.className = "post";
+
+      const now = new Date();
+      const date = now.toLocaleDateString() + " " + now.toLocaleTimeString();
+
+      post.innerHTML = `
+        <h3>${title}</h3>
+        <small>Posted on ${date}</small>
+        <p>${content}</p>
+      `;
+
+      postsDiv.prepend(post); // newest post at top
+
+      // clear form
+      document.getElementById("title").value = "";
+      document.getElementById("content").value = "";
+    }
+  </script>
 </body>
 </html>
