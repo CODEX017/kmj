@@ -1,220 +1,248 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>NurseCompanion Navigation</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      display: flex;
-      min-height: 100vh;
-      background: url("https://drive.google.com/uc?export=view&id=151AUZRikwwht30Vt7rUeNU0KhIJ03tKf") no-repeat center center fixed;
-      background-size: cover;
-      flex-direction: row;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NurseCompanion Community</title>
 
-    nav {
-      background: rgba(0, 150, 199, 0.9);
-      padding: 2rem 1rem;
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-      min-height: 100vh;
-      width: 220px;
-    }
+<!-- Firebase SDKs -->
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
 
-    nav a {
-      color: white;
-      text-decoration: none;
-      font-weight: bold;
-      font-size: 1rem;
-    }
+<style>
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  min-height: 100vh;
+  background: url("https://drive.google.com/uc?export=view&id=151AUZRikwwht30Vt7rUeNU0KhIJ03tKf") no-repeat center center fixed;
+  background-size: cover;
+  flex-direction: row;
+}
 
-    nav a:hover {
-      text-decoration: underline;
-    }
+nav {
+  background: rgba(0, 150, 199, 0.9);
+  padding: 2rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  min-height: 100vh;
+  width: 220px;
+}
 
-    main {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-      padding: 2rem;
-      background: rgba(255, 255, 255, 0.85);
-      margin: 2rem;
-      border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-    }
+nav a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 1rem;
+}
 
-    .welcome h1 {
-      margin-bottom: 1rem;
-      color: #003049;
-    }
+nav a:hover {
+  text-decoration: underline;
+}
 
-    .welcome p {
-      font-size: 1.2rem;
-      color: #333;
-    }
+main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 2rem;
+  background: rgba(255, 255, 255, 0.85);
+  margin: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  width: calc(100% - 260px);
+}
 
-    /* Blog Section */
-    .blog {
-      margin-top: 2rem;
-      text-align: left;
-      width: 100%;
-      max-width: 800px;
-    }
+.welcome h1 {
+  margin-bottom: 1rem;
+  color: #003049;
+}
 
-    .blog h2 {
-      color: #0096c7;
-      margin-bottom: 1rem;
-      text-align: center;
-    }
+.welcome p {
+  font-size: 1.2rem;
+  color: #333;
+}
 
-    .blog-form {
-      background: #ffffff;
-      padding: 1rem;
-      border-radius: 10px;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-      margin-bottom: 2rem;
-    }
+.blog {
+  margin-top: 2rem;
+  text-align: left;
+  width: 100%;
+  max-width: 800px;
+}
 
-    .blog-form input,
-    .blog-form textarea {
-      width: 100%;
-      padding: 0.7rem;
-      margin: 0.5rem 0;
-      border: 1px solid #ccc;
-      border-radius: 6px;
-      font-size: 1rem;
-      box-sizing: border-box;
-    }
+.blog h2 {
+  color: #0096c7;
+  margin-bottom: 1rem;
+  text-align: center;
+}
 
-    .blog-form button {
-      background: #0096c7;
-      color: white;
-      border: none;
-      padding: 0.7rem 1.5rem;
-      border-radius: 6px;
-      cursor: pointer;
-      font-weight: bold;
-    }
+.blog-form {
+  background: #ffffff;
+  padding: 1rem;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  margin-bottom: 2rem;
+}
 
-    .blog-form button:hover {
-      background: #0077a3;
-    }
+.blog-form input,
+.blog-form textarea {
+  width: 100%;
+  padding: 0.7rem;
+  margin: 0.5rem 0;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1rem;
+  box-sizing: border-box;
+}
 
-    .post {
-      background: #ffffff;
-      padding: 1.5rem;
-      margin-bottom: 1.5rem;
-      border-radius: 10px;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-      word-wrap: break-word;
-    }
+.blog-form button {
+  background: #0096c7;
+  color: white;
+  border: none;
+  padding: 0.7rem 1.5rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+}
 
-    .post h3 {
-      margin: 0 0 0.5rem;
-      color: #003049;
-      word-wrap: break-word;
-    }
+.blog-form button:hover {
+  background: #0077a3;
+}
 
-    .post p {
-      margin: 0.5rem 0;
-      color: #444;
-    }
+.post {
+  background: #ffffff;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  word-wrap: break-word;
+}
 
-    .post small {
-      color: #666;
-    }
+.post h3 {
+  margin: 0 0 0.5rem;
+  color: #003049;
+}
 
-    /* Responsive Styles */
-    @media (max-width: 768px) {
-      body {
-        flex-direction: column;
-      }
+.post p {
+  margin: 0.5rem 0;
+  color: #444;
+}
 
-      nav {
-        flex-direction: row;
-        width: 100%;
-        min-height: auto;
-        justify-content: space-around;
-        padding: 1rem;
-      }
+.post small {
+  color: #666;
+}
 
-      main {
-        margin: 1rem;
-        border-radius: 10px;
-        padding: 1rem;
-      }
+/* Responsive Styles */
+@media (max-width: 768px) {
+  body {
+    flex-direction: column;
+  }
 
-      .blog {
-        max-width: 100%;
-      }
-    }
-  </style>
+  nav {
+    flex-direction: row;
+    width: 100%;
+    min-height: auto;
+    justify-content: space-around;
+    padding: 1rem;
+  }
+
+  main {
+    margin: 1rem;
+    border-radius: 10px;
+    padding: 1rem;
+    width: auto;
+  }
+
+  .blog {
+    max-width: 100%;
+  }
+}
+</style>
 </head>
 <body>
-  <nav>
-    <a href="#careplans">Care Plans</a>
-    <a href="#diagnosis">Nursing Diagnosis</a>
-    <a href="#resources">Resources</a>
-    <a href="#studynotes">Study Notes</a>
-    <a href="#contact">Contact</a>
-    <a href="#about">About</a>
-    <a href="#blog">Blog</a>
-  </nav>
 
-  <main>
-    <div class="welcome">
-      <h1>Welcome to NurseCompanion</h1>
-      <p>Your nursing companion is ready—pick a section to begin learning.</p>
+<nav>
+  <a href="#careplans">Care Plans</a>
+  <a href="#diagnosis">Nursing Diagnosis</a>
+  <a href="#resources">Resources</a>
+  <a href="#studynotes">Study Notes</a>
+  <a href="#contact">Contact</a>
+  <a href="#about">About</a>
+  <a href="#blog">Community Blog</a>
+</nav>
+
+<main>
+  <div class="welcome">
+    <h1>Welcome to NurseCompanion</h1>
+    <p>Your nursing companion is ready—pick a section to begin learning.</p>
+  </div>
+
+  <section id="blog" class="blog">
+    <h2>Community Blog</h2>
+
+    <div class="blog-form">
+      <input type="text" id="title" placeholder="Enter your post title" />
+      <textarea id="content" rows="4" placeholder="Write your post..."></textarea>
+      <button onclick="addPost()">Publish</button>
     </div>
 
-    <section id="blog" class="blog">
-      <h2>Community Blog</h2>
+    <div id="posts"></div>
+  </section>
+</main>
 
-      <div class="blog-form">
-        <input type="text" id="title" placeholder="Enter your post title" />
-        <textarea id="content" rows="4" placeholder="Write your post..."></textarea>
-        <button onclick="addPost()">Publish</button>
-      </div>
+<script>
+  // TODO: Replace this config with your Firebase project details
+  const firebaseConfig = {
+    apiKey: "YOUR_API_KEY",
+    authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
+    databaseURL: "https://YOUR_PROJECT_ID-default-rtdb.firebaseio.com",
+    projectId: "YOUR_PROJECT_ID",
+    storageBucket: "YOUR_PROJECT_ID.appspot.com",
+    messagingSenderId: "SENDER_ID",
+    appId: "APP_ID"
+  };
 
-      <div id="posts"></div>
-    </section>
-  </main>
+  firebase.initializeApp(firebaseConfig);
+  const db = firebase.database();
+  const postsDiv = document.getElementById("posts");
 
-  <script>
-    function addPost() {
-      const title = document.getElementById("title").value.trim();
-      const content = document.getElementById("content").value.trim();
-      if (!title || !content) {
-        alert("Please enter a title and content!");
-        return;
-      }
-
-      const postsDiv = document.getElementById("posts");
-
-      const post = document.createElement("div");
-      post.className = "post";
-
-      const now = new Date();
-      const date = now.toLocaleDateString() + " " + now.toLocaleTimeString();
-
-      post.innerHTML = `
-        <h3>${title}</h3>
-        <small>Posted on ${date}</small>
-        <p>${content}</p>
-      `;
-
-      postsDiv.prepend(post);
-
-      document.getElementById("title").value = "";
-      document.getElementById("content").value = "";
+  // Listen for new posts in real time
+  db.ref("posts").on("value", snapshot => {
+    postsDiv.innerHTML = "";
+    const data = snapshot.val();
+    if(data){
+      const keys = Object.keys(data).reverse(); // newest first
+      keys.forEach(key => {
+        const post = data[key];
+        const postDiv = document.createElement("div");
+        postDiv.className = "post";
+        postDiv.innerHTML = `<h3>${post.title}</h3><small>Posted on ${post.date}</small><p>${post.content}</p>`;
+        postsDiv.appendChild(postDiv);
+      });
     }
-  </script>
+  });
+
+  function addPost(){
+    const title = document.getElementById("title").value.trim();
+    const content = document.getElementById("content").value.trim();
+    if(!title || !content){ alert("Please enter a title and content"); return; }
+
+    const now = new Date();
+    const date = now.toLocaleDateString() + " " + now.toLocaleTimeString();
+
+    db.ref("posts").push({
+      title,
+      content,
+      date
+    });
+
+    document.getElementById("title").value = "";
+    document.getElementById("content").value = "";
+  }
+</script>
+
 </body>
 </html>
