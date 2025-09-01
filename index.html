@@ -5,37 +5,58 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>NurseCompanion Navigation</title>
   <style>
-    body { 
-      font-family: Arial, sans-serif; 
-      margin: 0; 
-      padding: 0; 
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
       display: flex;
+      min-height: 100vh;
+      background: url("https://drive.google.com/uc?export=view&id=151AUZRikwwht30Vt7rUeNU0KhIJ03tKf") no-repeat center center fixed;
+      background-size: cover;
     }
 
-    nav { 
-      background: #0096c7; 
-      padding: 2rem 1rem; 
-      display: flex; 
-      flex-direction: column; 
+    nav {
+      background: rgba(0, 150, 199, 0.9); /* semi-transparent */
+      padding: 2rem 1rem;
+      display: flex;
+      flex-direction: column;
       gap: 20px;
-      min-height: 100vh; /* full height sidebar */
-      width: 200px;
+      min-height: 100vh;
+      width: 220px;
     }
 
-    nav a { 
-      color: white; 
-      text-decoration: none; 
-      font-weight: bold; 
-      font-size: 1rem; 
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 1rem;
     }
 
-    nav a:hover { 
-      text-decoration: underline; 
+    nav a:hover {
+      text-decoration: underline;
     }
 
     main {
       flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
       padding: 2rem;
+      background: rgba(255, 255, 255, 0.75); /* transparent overlay so text is readable */
+      margin: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    }
+
+    .welcome h1 {
+      margin-bottom: 1rem;
+      color: #003049;
+    }
+
+    .welcome p {
+      font-size: 1.2rem;
+      color: #333;
     }
   </style>
 </head>
@@ -50,8 +71,10 @@
   </nav>
 
   <main>
-    <h1>Welcome to NurseCompanion</h1>
-    <p>Select a section from the sidebar navigation.</p>
+    <div class="welcome">
+      <h1>Welcome to NurseCompanion</h1>
+      <p>Your nursing companion is ready—pick a section to begin learning.</p>
+    </div>
   </main>
 </body>
 </html>
