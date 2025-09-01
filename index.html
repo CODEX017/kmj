@@ -13,6 +13,7 @@
       min-height: 100vh;
       background: url("https://drive.google.com/uc?export=view&id=151AUZRikwwht30Vt7rUeNU0KhIJ03tKf") no-repeat center center fixed;
       background-size: cover;
+      flex-direction: row;
     }
 
     nav {
@@ -89,6 +90,7 @@
       border: 1px solid #ccc;
       border-radius: 6px;
       font-size: 1rem;
+      box-sizing: border-box;
     }
 
     .blog-form button {
@@ -111,11 +113,13 @@
       margin-bottom: 1.5rem;
       border-radius: 10px;
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+      word-wrap: break-word;
     }
 
     .post h3 {
       margin: 0 0 0.5rem;
       color: #003049;
+      word-wrap: break-word;
     }
 
     .post p {
@@ -125,6 +129,31 @@
 
     .post small {
       color: #666;
+    }
+
+    /* Responsive Styles */
+    @media (max-width: 768px) {
+      body {
+        flex-direction: column;
+      }
+
+      nav {
+        flex-direction: row;
+        width: 100%;
+        min-height: auto;
+        justify-content: space-around;
+        padding: 1rem;
+      }
+
+      main {
+        margin: 1rem;
+        border-radius: 10px;
+        padding: 1rem;
+      }
+
+      .blog {
+        max-width: 100%;
+      }
     }
   </style>
 </head>
@@ -148,14 +177,12 @@
     <section id="blog" class="blog">
       <h2>Community Blog</h2>
 
-      <!-- Blog Form -->
       <div class="blog-form">
         <input type="text" id="title" placeholder="Enter your post title" />
         <textarea id="content" rows="4" placeholder="Write your post..."></textarea>
         <button onclick="addPost()">Publish</button>
       </div>
 
-      <!-- Blog Posts -->
       <div id="posts"></div>
     </section>
   </main>
@@ -183,9 +210,8 @@
         <p>${content}</p>
       `;
 
-      postsDiv.prepend(post); // newest post at top
+      postsDiv.prepend(post);
 
-      // clear form
       document.getElementById("title").value = "";
       document.getElementById("content").value = "";
     }
