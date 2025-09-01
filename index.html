@@ -5,10 +5,38 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>NurseCompanion Navigation</title>
   <style>
-    body { font-family: Arial, sans-serif; margin: 0; padding: 0; }
-    nav { background: #0096c7; padding: 1rem; display: flex; justify-content: center; gap: 20px; }
-    nav a { color: white; text-decoration: none; font-weight: bold; font-size: 1rem; }
-    nav a:hover { text-decoration: underline; }
+    body { 
+      font-family: Arial, sans-serif; 
+      margin: 0; 
+      padding: 0; 
+      display: flex;
+    }
+
+    nav { 
+      background: #0096c7; 
+      padding: 2rem 1rem; 
+      display: flex; 
+      flex-direction: column; 
+      gap: 20px;
+      min-height: 100vh; /* full height sidebar */
+      width: 200px;
+    }
+
+    nav a { 
+      color: white; 
+      text-decoration: none; 
+      font-weight: bold; 
+      font-size: 1rem; 
+    }
+
+    nav a:hover { 
+      text-decoration: underline; 
+    }
+
+    main {
+      flex: 1;
+      padding: 2rem;
+    }
   </style>
 </head>
 <body>
@@ -20,5 +48,10 @@
     <a href="#contact">Contact</a>
     <a href="#about">About</a>
   </nav>
+
+  <main>
+    <h1>Welcome to NurseCompanion</h1>
+    <p>Select a section from the sidebar navigation.</p>
+  </main>
 </body>
 </html>
